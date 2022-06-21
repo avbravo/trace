@@ -4,7 +4,7 @@
  */
 package com.avbravo.trace.controller;
 
-import com.avbravo.trace.interfaces.IUser;
+
 import com.avbravo.trace.model.Country;
 import com.avbravo.trace.repository.CountryRepository;
 import java.util.ArrayList;
@@ -44,9 +44,7 @@ public class CountryController {
     @Inject
     CountryRepository countryRepository;
 
-    
-    @Inject
-    IUser iuser;
+
     // <editor-fold defaultstate="collapsed" desc="@GET">
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -58,7 +56,7 @@ public class CountryController {
     public List<Country> get() {
         List<Country> list = new ArrayList<>();
         try {
-          iuser.getPhone();
+   
             list = countryRepository.findAll();
 
         } catch (Exception e) {

@@ -13,8 +13,8 @@ import java.time.LocalDate;
  *
  * @author avbravo
  */
-@AutoImplement(as = "User", builder = true)
-public interface IUser {
+@AutoImplement(as = "Institution", builder = true)
+public interface InstitutionRepository {
 
    @Mandatory
     String getFirstName();
