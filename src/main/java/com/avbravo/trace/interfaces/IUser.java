@@ -6,6 +6,7 @@ package com.avbravo.trace.interfaces;
 
 
 import com.avbravo.jmoordb.core.annotation.AutoImplement;
+import com.avbravo.jmoordb.core.annotation.Mandatory;
 import java.time.LocalDate;
 
 /**
@@ -15,10 +16,10 @@ import java.time.LocalDate;
 @AutoImplement(as = "User", builder = true)
 public interface IUser {
 
-//    @Mandatory
+   @Mandatory
     String getFirstName();
 
-//    @Mandatory
+    @Mandatory
     String getLastName();
 
     LocalDate getDateOfBirth();
