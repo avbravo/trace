@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author avbravo
  */
-@Repository(entity = "Province", jakarta = false)
+@Repository(entity = Province.class, jakarta = false)
 public interface ProvinceRepository {
    @Mandatory
     String getFirstName();
