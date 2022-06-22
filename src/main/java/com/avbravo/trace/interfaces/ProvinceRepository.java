@@ -6,7 +6,9 @@ package com.avbravo.trace.interfaces;
 
 import com.avbravo.jmoordb.core.annotation.Mandatory;
 import com.avbravo.jmoordb.core.annotation.Repository;
+import com.avbravo.trace.model.Province;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -24,7 +26,5 @@ public interface ProvinceRepository {
 
     String getPlaceOfBirth();
 
-    String getPhone();
-
-    String getAddress();
+        public List<Province> findAll();
 }
