@@ -44,6 +44,9 @@ public class CountryController {
     @Inject
     CountryRepository countryRepository;
 
+    
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="@GET">
     @GET
@@ -57,6 +60,7 @@ public class CountryController {
         List<Country> list = new ArrayList<>();
         try {
    
+            
             list = countryRepository.findAll();
 
         } catch (Exception e) {
