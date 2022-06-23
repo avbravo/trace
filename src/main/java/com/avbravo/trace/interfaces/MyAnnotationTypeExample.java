@@ -4,19 +4,19 @@
  */
 package com.avbravo.trace.interfaces;
 
+
 import com.avbravo.jmoordb.core.annotation.Mandatory;
-import com.avbravo.trace.model.Province;
+import com.avbravo.jmoordb.core.annotation.app.MyAnnotationType;
+import com.avbravo.trace.model.Person;
 import java.time.LocalDate;
-import java.util.List;
-import com.avbravo.jmoordb.core.annotation.RepositoryBasic;
 
 /**
  *
  * @author avbravo
  */
-@RepositoryBasic(entity ="Province", jakarta = false)
-public interface ProvinceRepository {
-   @Mandatory
+@MyAnnotationType(entity=Person.class)
+public interface MyAnnotationTypeExample {
+        @Mandatory
     String getFirstName();
 
     @Mandatory
@@ -25,6 +25,4 @@ public interface ProvinceRepository {
     LocalDate getDateOfBirth();
 
     String getPlaceOfBirth();
-
-      public List<Province> findAll(String name);
 }

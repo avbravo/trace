@@ -1,7 +1,6 @@
 package com.avbravo.trace.controller;
 
-import com.mongodb.client.MongoClient;
-import javax.inject.Inject;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
@@ -23,6 +22,7 @@ public class HelloController {
 
    
 
+        
         } catch (Exception e) {
             System.out.println("ping() " + e.getLocalizedMessage());
         }

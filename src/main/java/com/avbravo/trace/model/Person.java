@@ -12,6 +12,7 @@ import com.avbravo.jmoordb.core.annotation.JsonObject;
  */
 @JsonObject
 public class Person {
+
     private String username;
     private String email;
 
