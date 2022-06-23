@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author avbravo
  */
-@Repository(entity = Province.class, jakarta = false)
+@Repository(entity ="Province", jakarta = false)
 public interface ProvinceRepository {
    @Mandatory
     String getFirstName();
@@ -26,5 +26,5 @@ public interface ProvinceRepository {
 
     String getPlaceOfBirth();
 
-        public List<Province> findAll();
+//        public List<Province> findAll(String name);
 }
