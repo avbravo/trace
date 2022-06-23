@@ -13,7 +13,7 @@ import java.util.List;
  * @author avbravo
  */
 @Repository(entity = Person.class,jakarta = false)
-public interface PersonRepository {
+public interface PersonRepository { 
 public List<Person> findAll();
 
 //     public List<Country> findAll();
