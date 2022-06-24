@@ -18,7 +18,7 @@ import java.util.List;
 public interface PersonRepository {  
       @Mandatory
     String getFirstName();
-//public List<Person> findAll();
+public List<Person> findAll();
 
 //     public List<Country> findAll();
 //    public Optional<Country> findById(String id);
