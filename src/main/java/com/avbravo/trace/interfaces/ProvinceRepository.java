@@ -26,5 +26,5 @@ public interface ProvinceRepository {
 
     String getPlaceOfBirth();
 
-      public List<Province> findAll(String name);
+//      public List<Province> findAll(String name);
 }
