@@ -14,5 +14,5 @@ import java.util.List;
  */
 @RepositoryCRUD(entity = Animal.class)
 public interface AnimalRepositoryCRUD {
-    public List<Animal> findAll();
+//    public List<Animal> findAll();
 }
