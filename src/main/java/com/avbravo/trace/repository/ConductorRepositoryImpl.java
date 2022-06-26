@@ -82,6 +82,7 @@ filters.add(match);
             try {
                 while (cursor.hasNext()) {
                     String json =cursor.next().toJson();
+                    el problema es que lo devuelve como una lista de tipo Auto
                     System.out.println(">> JSon "+json);
                     Conductor conductor = jsonb.fromJson(json, Conductor.class);
                     list.add(conductor);
