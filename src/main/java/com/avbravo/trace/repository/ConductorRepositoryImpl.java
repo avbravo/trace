@@ -48,8 +48,17 @@ public class ConductorRepositoryImpl implements ConductorRepository {
     MongoClient mongoClient;
  @Override
     public List<Conductor> findAll() {
+     System.out.println("*************************************");
+     System.out.println("findAllSimple");
+     System.out.println("*************************************");
     printList("findAllSimple()", findAllSimple());
+      System.out.println("*************************************");
+     System.out.println("findAllLookup())");
+     System.out.println("*************************************");
     printList("findAllLooku()",findAllLookup());
+       System.out.println("*************************************");
+     System.out.println("findAllBson())");
+     System.out.println("*************************************");
    printList("findAllBson()", findAllBson());
         
        
@@ -144,7 +153,10 @@ public class ConductorRepositoryImpl implements ConductorRepository {
             Jsonb jsonb = JsonbBuilder.create();
             try {
                 while (cursor.hasNext()) {
-                    Conductor conductor = jsonb.fromJson(cursor.next().toJson(), Conductor.class);
+                   String json = cursor.next().toJson();
+                    System.out.println("-->jsnon " +json);
+                    Conductor conductor = jsonb.fromJson(json, Conductor.class);
+                    System.out.println("convertido "+conductor.toString());
                     list.add(conductor);
                 }
             } finally {
@@ -152,7 +164,7 @@ public class ConductorRepositoryImpl implements ConductorRepository {
             }
 
         } catch (Exception e) {
-            System.out.println("findAll() " + e.getLocalizedMessage());
+            System.out.println("findAllSimple() " + e.getLocalizedMessage());
         }
 
         return list;
@@ -193,18 +205,21 @@ public class ConductorRepositoryImpl implements ConductorRepository {
     
     private void printList(String title, List<Conductor>list){
         try {
-             System.out.println("---------------------------------------");
+             System.out.println("|---------------------------------------");
+             System.out.println("|                                       |");
              System.out.println(" title "+title);
+             System.out.println("|                                       |");
              System.out.println("-----------------------------------------");
         if(list.isEmpty()){
-            System.out.println(title +" is empty");
+            System.out.println("----------------> "+title +" is empty");
         }else{
-            System.out.println("registros ");
+            System.out.println("-----------------> registros ");
             for(Conductor c:list){
                 System.out.println(" "+c.toString());
             }
         }
         } catch (Exception e) {
+            System.out.println("printList() "+e.getLocalizedMessage());
         }
     }
 }
