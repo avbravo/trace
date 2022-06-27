@@ -47,6 +47,11 @@ public class Conductor {
     public void setAuto(Auto auto) {
         this.auto = auto;
     }
+
+    @Override
+    public String toString() {
+        return "Conductor{" + "idconductor=" + idconductor + ", nombre=" + nombre + ", auto=" + auto.toString() + '}';
+    }
     
     
     

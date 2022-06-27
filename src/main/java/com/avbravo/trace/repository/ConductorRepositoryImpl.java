@@ -45,9 +45,17 @@ public class ConductorRepositoryImpl implements ConductorRepository {
 
     @Inject
     MongoClient mongoClient;
-
-    @Override
+ @Override
     public List<Conductor> findAll() {
+    printList("findAllSimple()", findAllSimple());
+    printList("findAllLooku()",findAllLookup());
+   printList("findAllBson()", findAllBson());
+        
+       
+        return new ArrayList<>();
+    }
+
+    public List<Conductor> findAllBson() {
 
         List<Conductor> list = new ArrayList<>();
         try {
@@ -55,96 +63,91 @@ public class ConductorRepositoryImpl implements ConductorRepository {
             MongoDatabase database = mongoClient.getDatabase("automovilismo");
 
             MongoCollection<Document> collection = database.getCollection("conductor");
-            
-            
-            
-Bson lookup = new Document("$lookup",
-        new Document("from", "auto")
-                .append("localField", "auto.idauto")
-                .append("foreignField", "idauto")
-                .append("as", "auto"));
 
-Bson match = new Document("$match",
-        new Document("idconductor", "7"));
+            Bson lookup = new Document("$lookup",
+                    new Document("from", "auto")
+                            .append("localField", "auto.idauto")
+                            .append("foreignField", "idauto")
+                            .append("as", "auto"));
 
-List<Bson> filters = new ArrayList<>();
-filters.add(lookup);
-filters.add(match);
+            Bson match = new Document("$match",
+                    new Document("idconductor", "7"));
 
-//AggregateIterable<Document> it =collection.aggregate(filters);
-//
-//for (Document row : it) {
-//    System.out.println(row.toJson());
-//}
+            List<Bson> filters = new ArrayList<>();
+            filters.add(lookup);
+            filters.add(match);
 
-            MongoCursor<Document> cursor = collection.aggregate(filters).iterator();
+        MongoCursor<Document> cursor = collection.aggregate(filters).iterator();
             Jsonb jsonb = JsonbBuilder.create();
             try {
                 while (cursor.hasNext()) {
-                    String json =cursor.next().toJson();
-                    el problema es que lo devuelve como una lista de tipo Auto
-                    System.out.println(">> JSon "+json);
+                    String json = cursor.next().toJson();
+                    //  el problema es que lo devuelve como una lista de tipo Auto
+                    System.out.println(">> JSon " + json);
                     Conductor conductor = jsonb.fromJson(json, Conductor.class);
                     list.add(conductor);
                 }
             } finally {
                 cursor.close();
             }
-/**
- * Funciona sin cargar los datos de auto
- */
-//            collection.aggregate(
-//Arrays.asList(match(eq("idconductor", "7")),    
-//lookup("auto", "auto.idauto", "idauto", "auto")
-//))
-
-/**
- * Search 3
- */
-//Bson lookup = new Document("$lookup",
-//        new Document("from", "auto")
-//                .append("localField", "auto.idauto")
-//                .append("foreignField", "idauto")
-//                .append("as", "auto"));
-//
-//Bson match = new Document("$match",
-//        new Document("idconductor", "7"));
-//
-//List<Bson> filters = new ArrayList<>();
-//filters.add(lookup);
-//filters.add(match);
-// MongoCursor<Document> cursor = collection.aggregate(filters).iterator();
-// 
-
-//AggregateIterable<Document> it = db.getCollection("coll_one").aggregate(filters);
-//
-//for (Document row : it) {
-//    System.out.println(row.toJson());
-//}
+       
 
 
-// Search 1
-//  no trae los demas datos de Auto
-//            MongoCursor<Document> cursor = collection.aggregate(
-//                    Arrays.asList(match(eq("idconductor", "7")),
-//                            lookup("auto", "auto.idauto", "idauto", "auto")
-//                    )).iterator();
-//
-//  
+        } catch (Exception e) {
+            System.out.println("findAll() " + e.getLocalizedMessage());
+        }
 
+        return list;
+    }
 
-// Search 0
-  // Busca en la misma coleccion          
-//            MongoCursor<Document> cursor = collection.find().iterator();
-//            Jsonb jsonb = JsonbBuilder.create();
-//            try {
-//                while (cursor.hasNext()) {
-//                    Conductor conductor = jsonb.fromJson(cursor.next().toJson(), Conductor.class);
-//                    list.add(conductor);
-//                }
-//            } finally {
-//                cursor.close();
-//            }
+   
+    public List<Conductor> findAllLookup() {
+
+        List<Conductor> list = new ArrayList<>();
+        try {
+
+            MongoDatabase database = mongoClient.getDatabase("automovilismo");
+
+            MongoCollection<Document> collection = database.getCollection("conductor");
+
+  
+            MongoCursor<Document> cursor = collection.aggregate(
+                    Arrays.asList(match(eq("idconductor", "7")),
+                            lookup("auto", "auto.idauto", "idauto", "auto")
+                    )).iterator();
+ Jsonb jsonb = JsonbBuilder.create();
+            try {
+                while (cursor.hasNext()) {
+                    Conductor conductor = jsonb.fromJson(cursor.next().toJson(), Conductor.class);
+                    list.add(conductor);
+                }
+            } finally {
+                cursor.close();
+            }
+        } catch (Exception e) {
+            System.out.println("findAll() " + e.getLocalizedMessage());
+        }
+
+        return list;
+    }
+
+    public List<Conductor> findAllSimple() {
+
+        List<Conductor> list = new ArrayList<>();
+        try {
+            MongoDatabase database = mongoClient.getDatabase("automovilismo");
+            MongoCollection<Document> collection = database.getCollection("conductor");
+            // Busca en la misma coleccion          
+            MongoCursor<Document> cursor = collection.find().iterator();
+            Jsonb jsonb = JsonbBuilder.create();
+            try {
+                while (cursor.hasNext()) {
+                    Conductor conductor = jsonb.fromJson(cursor.next().toJson(), Conductor.class);
+                    list.add(conductor);
+                }
+            } finally {
+                cursor.close();
+            }
 
         } catch (Exception e) {
             System.out.println("findAll() " + e.getLocalizedMessage());
@@ -185,4 +188,21 @@ filters.add(match);
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    
+    private void printList(String title, List<Conductor>list){
+        try {
+             System.out.println("---------------------------------------");
+             System.out.println(" title "+title);
+             System.out.println("-----------------------------------------");
+        if(list.isEmpty()){
+            System.out.println(title +" is empty");
+        }else{
+            System.out.println("registros ");
+            for(Conductor c:list){
+                System.out.println(" "+c.toString());
+            }
+        }
+        } catch (Exception e) {
+        }
+    }
 }
