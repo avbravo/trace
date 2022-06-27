@@ -11,6 +11,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 import static com.mongodb.client.model.Aggregates.lookup;
 import static com.mongodb.client.model.Aggregates.match;
 import static com.mongodb.client.model.Filters.eq;
@@ -113,6 +114,7 @@ public class ConductorRepositoryImpl implements ConductorRepository {
   
             MongoCursor<Document> cursor = collection.aggregate(
                     Arrays.asList(match(eq("idconductor", "7")),
+                            Aggregates.unwind("$auto"),
                             lookup("auto", "auto.idauto", "idauto", "auto")
                     )).iterator();
  Jsonb jsonb = JsonbBuilder.create();
