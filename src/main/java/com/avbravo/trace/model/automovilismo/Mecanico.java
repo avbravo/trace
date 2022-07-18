@@ -18,7 +18,8 @@ public class Mecanico {
     private String idmecanico;
     @Column
    private String nombre;
-    @Referenced(from = "provincia",localField = "idprovincia")
+    
+    @Referenced(from = "provincia",localField = "idprovincia",foreignField = "provincia.idprovincia",as="provincia")
     private Provincia provincia;
 
     public Mecanico() {

@@ -17,7 +17,8 @@ public class Video {
     private String idvideo;
     @Column
     private String video;
-    @Referenced(collection = "curso",field = "idcurso", repository = "")
+   @Referenced(from = "planeta",localField = "idplaneta",foreignField = "planeta.idplaneta",as="planeta")
+            
     Curso curso;
 
     public Video() {

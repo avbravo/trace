@@ -6,7 +6,7 @@ package com.avbravo.trace.interfaces;
 
 import com.avbravo.jmoordb.core.annotation.Mandatory;
 import com.avbravo.jmoordb.core.annotation.Repository;
-
+import com.avbravo.trace.model.*;
 /**
  *
  * @author avbravo

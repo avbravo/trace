@@ -17,7 +17,7 @@ public class Curso {
     private String idcurso;
     @Column
     private String curso;
-    @Referenced(collection = "tutor", field = "idtutor", repository = "")
+    @Referenced(from = "tutor", foreignField = "idtutor", localField = "tutor.idtutor",as ="tutor")
     Tutor tutor;
 
     public Curso() {

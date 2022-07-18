@@ -20,7 +20,7 @@ public class Provincia {
     private Integer idprovincia;
     @Column
     private String provincia;
-    @Referenced(collection = "pais",field = "idpais",repository = "")
+     @Referenced(from = "pais",localField = "idpais",foreignField = "pais.idpais",as="pais")
     private Pais pais;
 
     public Provincia() {
