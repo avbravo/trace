@@ -18,7 +18,7 @@ public class Conductor {
     private String idconductor;
     @Column
    private String nombre;
-    @Referenced(collection = "auto",field = "idauto",repository = "")
+    @Referenced(from = "auto",localfield = "idauto",foreignfield="",as="")
     private Auto auto;
 
     public Conductor() {

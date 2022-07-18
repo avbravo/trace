@@ -18,7 +18,7 @@ public class Mecanico {
     private String idmecanico;
     @Column
    private String nombre;
-    @Referenced(collection = "provincia",field = "idprovincia",repository = "")
+    @Referenced(from = "provincia",localField = "idprovincia")
     private Provincia provincia;
 
     public Mecanico() {
