@@ -15,11 +15,20 @@ public class Person {
 
     private String username;
     private String email;
+    private Integer edad;
 
-    public Person(String username, String email) {
+    public Person() {
+    }
+
+    
+    
+    public Person(String username, String email, Integer edad) {
         this.username = username;
         this.email = email;
+        this.edad = edad;
     }
+
+ 
 
     public String getUsername() {
         return username;
@@ -28,4 +37,14 @@ public class Person {
     public String getEmail() {
         return email;
     }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+    
+    
 }
