@@ -7,18 +7,13 @@ package com.avbravo.trace.model;
 import com.avbravo.jmoordb.core.annotation.Column;
 import com.avbravo.jmoordb.core.annotation.Entity;
 import com.avbravo.jmoordb.core.annotation.Id;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author avbravo
  */
 
-@Getter
-@Setter
-@Builder
+
 @Entity
 public class Planeta {
     @Id
@@ -28,7 +23,24 @@ public class Planeta {
 
     public Planeta() {
     }
+
+    public String getIdplaneta() {
+        return idplaneta;
+    }
+
+    public void setIdplaneta(String idplaneta) {
+        this.idplaneta = idplaneta;
+    }
+
+    public String getPlaneta() {
+        return planeta;
+    }
+
+    public void setPlaneta(String planeta) {
+        this.planeta = planeta;
+    }
     
+   
     
     
 }
