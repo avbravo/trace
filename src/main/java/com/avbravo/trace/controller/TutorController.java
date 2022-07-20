@@ -7,11 +7,11 @@ package com.avbravo.trace.controller;
 
 import com.avbravo.trace.model.cursos.Tutor;
 import com.avbravo.trace.repository.TutorRepository;
+import jakarta.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
-import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

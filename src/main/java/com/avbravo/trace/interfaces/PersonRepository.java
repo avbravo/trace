@@ -6,17 +6,16 @@ package com.avbravo.trace.interfaces;
 
 import com.avbravo.jmoordb.core.annotation.Mandatory;
 import com.avbravo.jmoordb.core.annotation.Repository;
-import com.avbravo.jmoordb.core.annotation.RepositoryBasic;
 import com.avbravo.trace.model.Person;
-import java.util.List;
 
 /**
  *
  * @author avbravo
  */
-@Repository(entity = Person.class,jakarta = false)
-public interface PersonRepository {  
-      @Mandatory
+@Repository(entity = Person.class, jakarta = false)
+public interface PersonRepository {
+
+    @Mandatory
     String getFirstName();
 //public List<Person> findAll();
 

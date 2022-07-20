@@ -72,6 +72,12 @@
             <artifactId>lombok</artifactId>
             <version>1.16.10</version>
         </dependency>-->
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     
     <build>
